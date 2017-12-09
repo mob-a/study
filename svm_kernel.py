@@ -1,17 +1,16 @@
 # python svm_kernel.py |grep -E '.*2.000,.*2.000,'
 
-# 言語処理のための機械学習入門128ページ
-# データ数D個とすると、a1~aDのD個の変数
-# 条件から、yD*aD = -y1*a1-y2*a2-...-yD-1*aD-1 なので実質D-1個の変数
-# aiに関する偏微分
-# 最小化問題に変換する
-# df/daI = 1/2 * [ sigma_{j=1~D && j!=I}{2*yI*yj*aj*k(dI,dj)} + 2*yI*yI*aI*(dI,dI) ] + 1
-#        = sigma(j=1~D) (yI*yj*aj*k(dI,dj)) + 1
+# 言語処理のための機械学習入門の4.4カーネル法を実装
+#   (間違いはあるかもしれません)
 #
-# aD = yD*(-y1*a1-y2*a2-...-yD-1*aD-1)=(-yD)*sigma(k=1~D-1)(yk*ak)であることを考慮すると
+# 最急勾配法で最適化する方針でいく. aiでの偏微分について考える.
+# なお、最小化問題として解く。目的関数は書籍にあるものに -1 倍したもの。
+#
+# データ数D個とすると、a1~aDのD個の変数
+# 条件から、aD = -yD*(y1*a1+y2*a2+...+yD-1*aD-1) なので実質D-1個の変数
 # aDの中でIに依存する部分は
-# -yD*yI*aI
-# 偏微分で考慮すべきところ
+#  -yD*yI*aI
+# ai,ajの組み合わせの和のところで、偏微分で考慮すべきところ
 # yI*yj*aI*aj*k(dI,dj)*2
 #   => 2*yI*yj*aj*k(dI,dj)
 # yI*yI*aI*aI*k(dI,dI)*1
@@ -65,8 +64,7 @@ def kernel_table(x, D):
 
 def gd(D,x,y,k):
     # 最適化のやりかた、もっとマシな方法があると思う
-    # 以下の条件を満たしながらなのでむずい
-    #
+    # 以下の条件を満たしながら進める
     # sigma(i)(yi*ai) = 0
     # ai>=0
 
@@ -127,14 +125,10 @@ def get_bias(x, y, a, D):
         # 正例の中から、最もclassifyした値が小さいものを探す
         if y[i] < 0:
             continue
-        classify_result = classify(x[i], x, y, a, 0, D)
+        classify_result = classify(x[i], x, y, a, 0, D) # この時点ではbias=0としておく
         if classify_result < min_classify:
-            x_plus = x[i]
             min_classify = classify_result
-    bias = 0
-    for i in range(D):
-        bias += a[i] * y[i] * kernel(x_plus, x[i])
-    return bias
+    return min_classify - 1.0 # (正誤表参照) http://www.lr.pi.titech.ac.jp/~takamura/ml4nl.html
 
 def main():
     x = [
