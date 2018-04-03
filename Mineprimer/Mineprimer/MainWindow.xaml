@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel >
-        <ItemsControl x:Name="datalistitems" ItemsSource="{Binding Mode=OneWay}" >
+        <ItemsControl x:Name="datalistitems" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=Explicit}" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" />
@@ -15,10 +15,10 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                        <ItemsControl  ItemsSource="{Binding clss}" Height="420" >
+                        <ItemsControl  ItemsSource="{Binding Cells}" Height="420" >
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Button Content="{Binding Name}" Width="30" Height="30"/>
+                                    <Button Content="{Binding View}" Tag="{Binding ID}" Width="30" Height="30" Click="Button_Click"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
