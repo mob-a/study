@@ -42,6 +42,6 @@ def configure(keymap):
         keymap_global[ "C-Space" ] = "S-Down" 
         keymap_global[ "C-A-Space" ] = "S-Up" 
         keymap_global[ "C-K" ] = "S-End","C-X" 
-        keymap_global[ "S-A-Comma" ] = "PageUp" 
-        keymap_global[ "S-A-Period" ] = "PageDown" 
+        keymap_global[ "S-A-Comma" ] = "C-Home" 
+        keymap_global[ "S-A-Period" ] = "C-End" 
 
