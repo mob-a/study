@@ -1,3 +1,6 @@
+# pip install redis flask pytz
+# FLASK_APP=main.py flask run
+
 from flask import Flask, request, redirect
 from redis import Redis
 import uuid
