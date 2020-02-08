@@ -26,7 +26,7 @@ REDIRECT_URIは  https://<server-host>:<server-port>/callback とする.
 ```
 source env
 cd django
-uwsgi --https 0.0.0.0:8000,server.crt,server.key --module prj.wsgi
+uwsgi --https 0.0.0.0:8000,server.crt,server.key --module oauthtoken.wsgi
 ```
 
 * ブラウザからアクセス
