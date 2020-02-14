@@ -21,3 +21,7 @@ SERVER_PORT
 
 # ブラウザからアクセス
 http://localhost:8080/
+
+# トークンを取得したらrunserver.batを終了
+
+# dist以下は配布可能
