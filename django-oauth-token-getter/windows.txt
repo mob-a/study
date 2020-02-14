@@ -25,3 +25,6 @@ http://localhost:8080/
 # トークンを取得したらrunserver.batを終了
 
 # dist以下は配布可能
+- 不要なファイルを消してダイエットできるはず
+-- 翻訳 (django.po, django.mo) / 一応 en は残しておく
+-- __pycache__ 
