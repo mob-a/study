@@ -1,0 +1,23 @@
+# python インストール
+https://www.python.org/downloads/
+
+# コマンドプロンプト
+python -m venv venv
+start venv\Scripts\activate.bat
+
+# コマンドプロンプト (venv)
+pip install requests-oauthlib
+pip install django==2.2
+pip install pyinstaller
+pyinstaller --name django django\manage.py 
+
+# runserver.batを編集
+- 環境変数の値を、OAuthアプリに合わせて適切に設定
+CLIENT_ID
+CLIENT_SECRET
+SERVER_PORT
+
+# runserver.bat実行
+
+# ブラウザからアクセス
+http://localhost:8080/
