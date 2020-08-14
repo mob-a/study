@@ -1,1 +1,4 @@
 https://github.com/yoyoyo-yo/Gasyori100knock を実施
+
+Jupyter Notebookの軽量化コマンド
+cat /foo/Untitled.ipynb |perl -ple 's!"iVBO.*?"!"iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZSURBVDhPY/hPIhjVQAwY1UAMGHQa/v8HAK+t/R8kTA7nAAAAAElFTkSuQmCC"!' > /foo/my.ipynb
