@@ -97,6 +97,8 @@ array<WORD, 2> rc5_decrypt(array<WORD, 2> encrypted, array<WORD, subkey_len> S) 
 }
 
 int main(){
+  // https://github.com/stamparm/cryptospecs/blob/master/symmetrical/sources/rc5.c
+  // https://en.wikipedia.org/wiki/RC5
   mt19937 engine;
   engine.seed(123);
   array<uint8_t, key_len> K;
