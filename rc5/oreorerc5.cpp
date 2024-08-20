@@ -21,8 +21,6 @@ const uint size_of_word = 4;
 const uint key_len_as_word = 4;
 
 using WORD = uint32_t;
-const WORD P = 0xb7e15163;
-const WORD Q = 0x9e3779b9;
 
 
 const uint w = 32; //word size in bits
@@ -47,12 +45,15 @@ array<WORD, subkey_len> rc5_setup(array<uint8_t, key_len> K) {
     /*
     // keyを8ビット16個から32ビット4個に直す
     for (int i = key_len-1; i >= 0; i-=size_of_word) {
-    L[i / size_of_word] = (K[i]<<24)+(K[i+1]<<16)+(K[i+2]<<8)+K[i+3];
+      L[i / size_of_word] = (K[i]<<24)+(K[i+1]<<16)+(K[i+2]<<8)+K[i+3];
     }
     */
   }
   {
     // subkeyを謎の定数で初期化
+    const WORD P = 0xb7e15163;
+    const WORD Q = 0x9e3779b9;
+
     S[0] = P;
     for (int i = 1; i < subkey_len; i++) {
       S[i] = S[i - 1] + Q;
